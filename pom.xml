@@ -6,6 +6,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>bbzy-common</module>
+    <module>bbzy-common/bbzy-common-core</module>
   </modules>
 
   <groupId>com.bbzy.selfuse</groupId>
@@ -18,18 +19,128 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <discovery.version>6.10.0</discovery.version>
+    <!-- Spring Cloud Hoxton compatible versions -->
+    <spring.cloud.version>Hoxton.SR11</spring.cloud.version>
+    <spring.cloud.alibaba.version>2.2.5.RELEASE</spring.cloud.alibaba.version>
+    <spring.boot.version>2.3.10.RELEASE</spring.boot.version>
+    <spring.boot.admin.version>2.3.0</spring.boot.admin.version>
+
+    <mybatisplus.version>3.4.1</mybatisplus.version>
+    <druid.version>1.2.2</druid.version>
+    <redisson.version>3.15.1</redisson.version>
+    <es.version>7.3.0</es.version>
+    <hutool.version>5.6.3</hutool.version>
+
+    <fastjson.version>1.2.73</fastjson.version>
+
   </properties>
 
   <dependencies>
+    <!--lombok-->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <!-- huTool 工具包 -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-crypto</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-http</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-json</artifactId>
+      <version>${hutool.version}</version>
     </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <!--spring boot-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--spring cloud-->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring.cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--spring cloud alibaba-->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring.cloud.alibaba.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- 监控服务 -->
+      <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-dependencies</artifactId>
+        <version>${spring.boot.admin.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- mybatis plus-->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatisplus.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+        <version>${mybatisplus.version}</version>
+      </dependency>
+      <!--druid-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+      <!-- 分布式锁 -->
+      <dependency>
+        <groupId>org.redisson</groupId>
+        <artifactId>redisson</artifactId>
+        <version>${redisson.version}</version>
+      </dependency>
+      <!--es客户端-->
+      <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${es.version}</version>
+      </dependency>
+      <!--es-->
+      <dependency>
+        <groupId>org.elasticsearch</groupId>
+        <artifactId>elasticsearch</artifactId>
+        <version>${es.version}</version>
+      </dependency>
+
+      <!--fastjson-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>
